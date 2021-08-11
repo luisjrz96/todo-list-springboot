@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "subject": "Practice football",
+    "description": "Practice football at the school next Wednesday",
+    "startingDate": "2020-04-14",
+    "startingTime": "10:00:00",
+    "endingTime": "11:30:00"
+  },
+  {
+    "id": 2,
+    "subject": "Go to the cinema",
+    "description": "Go to watch the new action movie",
+    "startingDate": "2020-04-14",
+    "endingDate": "2020-04-14",
+    "startingTime": "14:00:00",
+    "endingTime": "15:45:00"
+  },
+  {
+    "id": 3,
+    "subject": "Go to the park",
+    "description": "Go to the park near to home",
+    "startingDate": "2020-04-14",
+    "endingDate": "2020-04-14",
+    "startingTime": "17:00:00",
+    "endingTime": "19:00:00"
+  },
+  {
+    "id": 4,
+    "subject": "Do school homework",
+    "description": "Do the homework related to Maths",
+    "startingDate": "2020-04-14",
+    "endingDate": "2020-04-14",
+    "startingTime": "20:00:00",
+    "endingTime": "22:30:00"
+  }
+]

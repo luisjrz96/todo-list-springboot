@@ -1,0 +1,73 @@
+buildscript {
+	repositories {
+		maven {
+			url "https://plugins.gradle.org/m2/"
+		}
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:2.5.2")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'jacoco'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.luisjrz96'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+	maven {
+		url "https://repo.spring.io/milestone"
+	}
+
+}
+
+dependencies {
+	implementation 'io.springfox:springfox-swagger2:2.7.0'
+	implementation 'io.springfox:springfox-swagger-ui:2.7.0'
+	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.6.0'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	runtimeOnly 'com.h2database:h2:1.4.200'
+	runtimeOnly 'mysql:mysql-connector-java'
+
+
+}
+
+test {
+	useJUnitPlatform()
+	finalizedBy jacocoTestReport // report is always generated after tests run
+}
+
+jacocoTestReport {
+	dependsOn test // tests are required to run before generating the report
+}
+
+jacocoTestReport {
+	reports {
+		xml.required = true
+		csv.required = false
+		html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+	}
+	afterEvaluate {
+		classDirectories.setFrom(
+				files(classDirectories.files.collect {
+					fileTree(dir: it, exclude:
+							['com/luisjrz96/todolist/config/**',
+							 'com/luisjrz96/todolist/models/**',
+							 'com/luisjrz96/todolist/TodoListApplication**']
+					)}))
+	}
+}
+
+bootJar {
+	mainClass = 'com.luisjrz96.todolist.TodoListApplication'
+}

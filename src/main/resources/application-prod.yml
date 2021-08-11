@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: ${TODO_APP_DATABASE_URL}
+    driverClassName: ${TODO_APP_DB_DRIVER}
+    username: ${TODO_APP_DB_USERNAME}
+    password: ${TODO_APP_DB_PASSWORD}
+  jpa:
+    database-platform: ${TODO_APP_DB_DIALECT}
+    hibernate:
+      ddl-auto: ${DDL_AUTO:none}

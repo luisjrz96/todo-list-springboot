@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: ${TODO_APP_DATABASE_URL:jdbc:h2:mem:~/tmp/test_db}
+    driverClassName: ${TODO_APP_DB_DRIVER:org.h2.Driver}
+    username: ${TODO_APP_DB_USERNAME:sa}
+    password: ${TODO_APP_DB_PASSWORD:password}
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    database-platform: ${TODO_APP_DB_DIALECT:org.hibernate.dialect.H2Dialect}

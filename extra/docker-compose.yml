@@ -1,0 +1,25 @@
+version: "3.0"
+services:
+  app:
+    image: todo:1.0
+    depends_on:
+      - db
+    restart: always
+    ports:
+      - 8080:8080
+    environment:
+      ENV: prod
+      TODO_APP_DATABASE_URL: jdbc:mysql://db:3306/todo
+      TODO_APP_DB_DRIVER: com.mysql.jdbc.Driver
+      TODO_APP_DB_USERNAME: mysqluser
+      TODO_APP_DB_PASSWORD: securepasswd
+      TODO_APP_DB_DIALECT: org.hibernate.dialect.MySQL5Dialect
+      DDL_AUTO: create-only
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: securepasswd
+      MYSQL_USER: mysqluser
+      MYSQL_PASSWORD: securepasswd
+      MYSQL_DATABASE: todo
